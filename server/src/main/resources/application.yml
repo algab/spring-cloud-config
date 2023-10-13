@@ -1,0 +1,25 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: dev,jdbc
+  datasource:
+    url: jdbc:postgresql://localhost:5432/config-server
+    username: postgres
+    password: pg
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+  cloud:
+    config:
+      enabled: true
+      server:
+        jdbc:
+          sql: SELECT KEY, VALUE from PROPERTIES where APPLICATION=? and PROFILE=? and LABEL=?
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

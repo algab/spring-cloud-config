@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: config-client
+  profiles:
+    active: dev
+  cloud:
+    bus:
+      enabled: true
+      trace:
+        enabled: true
+      refresh:
+        enabled: true
+    config:
+      label: 1
+  config:
+    import: configserver:http://localhost:8080
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
